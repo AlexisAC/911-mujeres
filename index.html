@@ -10,9 +10,10 @@
 <body>
   <div id="app">
       <div class="container">
-          <h1>Cuestionario</h1>
+          
           <div class="row">
-              <div class="col">
+              <div class="offset-2 col-8">
+                <h1>Cuestionario</h1>
                   <form @submit.prevent="getResultado()">
                       <div class="form-group" >
                           <div class="row">
@@ -410,7 +411,8 @@
                               </div>                                
                           </div>
                       </div>
-                      <input type="submit" value="Enviar">
+                 <br>
+                      <button type="submit" class="btn btn-primary btn-lg btn-block">Obten los resultados</button>
                   </form>
                
                     
@@ -437,14 +439,34 @@ var app = new Vue({
     },
     methods: {
     getResultado(){
+
+        
         var fResultado = 0;
-        console.log(this.cst);
+        var cantidad = 0;
+        var errores ="";
         Object.keys(this.cst).forEach(res => {
+            cantidad++;
             if(this.cst[res]=="Si")fResultado+=3;
             if(this.cst[res]=="A veces")fResultado+=2;
             if(this.cst[res]=="Rara Vez")fResultado+=1;
             if(this.cst[res]=="No")fResultado+=0;
+            
         });
+        if(cantidad<12){
+            Swal.fire({
+            title: 'Tienes campos sin completar',
+            text: 'Es importante que completes todos los campos',
+            icon: 'error',
+            confirmButtonText: 'Lo entiendo'
+        })
+        }else{
+            Swal.fire({
+            title: '¡CUIDADO!',
+            text: 'Pide asesoría y apoyo, tu seguridad puede estar en riesgo.',
+            icon: 'warning',
+            confirmButtonText: 'Lo entiendo'
+        })
+        
         console.log(fResultado);
         if(fResultado>=0 && fResultado<=5){
             Swal.fire({
@@ -482,7 +504,7 @@ var app = new Vue({
         }
         
         this.resultado = fResultado;
-
+    }
     }
     },
 })
