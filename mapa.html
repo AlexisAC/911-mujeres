@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>KML Click Capture Sample</title>
+    <style>
+      html, body {
+        height: 370px;
+        padding: 0;
+        margin: 0;
+        }
+      #map {
+       height: 400px;
+       width: 900px;
+       overflow: hidden;
+       float: left;
+       border: thin solid #333;
+       }
+      #capture {
+       height: 360px;
+       width: 480px;
+       overflow: hidden;
+       float: left;
+       background-color: #ECECFB;
+       border: thin solid #333;
+       border-left: none;
+       }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+   
+    <script>
+      
+      var src = '/map_scr/data.kml';
+      function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 1,
+    center: {lat: 41.876, lng: -87.624}
+  });
+
+  var ctaLayer = new google.maps.KmlLayer({
+    url: 'E:\PROYECTOS\XAMPP\htdocs\911-mujeres\map_scr\data.kml',
+    map: map
+  });
+}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBisWxC0wZ-jUfCnRXdFa45__Nc5MTtQoE&callback=initMap">
+    </script>
+  </body>
+</html>
